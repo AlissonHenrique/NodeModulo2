@@ -1,11 +1,12 @@
 const { User } = require('../models')
 
 class UserController {
-  create (req, res) {
+  create(req, res) {
     return res.render('auth/signup')
   }
+  git
 
-  async store (req, res) {
+  async store(req, res) {
     const { filename: avatar } = req.file
 
     User.create({ ...req.body, avatar: avatar })
