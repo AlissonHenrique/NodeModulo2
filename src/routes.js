@@ -4,6 +4,8 @@ const UserController = require('./app/controllers/UserController')
 const SessionController = require('./app/controllers/SessionController')
 const DashboardController = require('./app/controllers/DashboardController')
 const FileController = require('./app/controllers/FileController')
+const AppointmentController = require('./app/controllers/AppointmentController')
+const AvailableController = require('./app/controllers/AvailableController')
 const multerConfig = require('./config/multer')
 
 const upload = require('multer')(multerConfig)
@@ -26,4 +28,16 @@ routes.get('/signup', guestMiddleware, UserController.create)
 routes.post('/signup', upload.single('avatar'), UserController.store)
 routes.get('/app/logout', SessionController.destroy)
 routes.get('/app/dashboard', DashboardController.index)
+
+routes.get('/app/appointments/new/:provider', AppointmentController.create)
+routes.post('/app/appointments/new/:provider', AppointmentController.store)
+
+routes.get('/app/available/:provider', AvailableController.index)
+routes.get('/teste', function (req, res) {
+  // res.send('Esta é uma requisição GET.')
+  // res.send(req.query)
+  // res.send(req.headers)
+  // res.send(req.params)
+  res.send(req.body)
+})
 module.exports = routes
